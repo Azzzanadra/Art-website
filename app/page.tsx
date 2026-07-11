@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { sql } from "./lib/db";
 // import { supabase } from "./lib/supabase";
 
 export default async function HomePage() {
@@ -28,6 +29,15 @@ export default async function HomePage() {
   //   latestImage = publicUrlData.publicUrl;
   // }
 
+  const items = await sql`
+    SELECT title, image_url
+    FROM items
+    ORDER BY created_at DESC
+    LIMIT 1
+  `;
+
+  const latestImage = items[0]?.image_url ?? "#";
+
   const handleClick = () => {
     router.push("/other");
   };
@@ -43,7 +53,7 @@ export default async function HomePage() {
               Latest Upload
             </div>
             <div className="innerImg">
-              <img src="#" alt="The latest upload" />
+              <img src={latestImage} alt="The latest upload" />
             </div>
           </div>
         </div>
