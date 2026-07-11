@@ -7,26 +7,26 @@ import { supabase } from "./lib/supabase";
 export default async function HomePage() {
   const [name, setName] = useState("");
   const router = useRouter();
-  const { data: files, error } = await supabase.storage
-    .from("art-uploads")
-    .list("", {
-      limit: 1,
-      sortBy: { column: "created_at", order: "desc" },
-    });
+  // const { data: files, error } = await supabase.storage
+  //   .from("art-uploads")
+  //   .list("", {
+  //     limit: 1,
+  //     sortBy: { column: "created_at", order: "desc" },
+  //   });
 
-  if (error) {
-    console.error("Error fetching latest image:", error.message);
-  }
+  // if (error) {
+  //   console.error("Error fetching latest image:", error.message);
+  // }
 
-  let latestImage = "#";
+  // let latestImage = "#";
 
-  if (files && files.length > 0) {
-    const { data: publicUrlData } = supabase.storage
-      .from("art-uploads")
-      .getPublicUrl(files[0].name);
+  // if (files && files.length > 0) {
+  //   const { data: publicUrlData } = supabase.storage
+  //     .from("art-uploads")
+  //     .getPublicUrl(files[0].name);
 
-    latestImage = publicUrlData.publicUrl;
-  }
+  //   latestImage = publicUrlData.publicUrl;
+  // }
 
   const handleClick = () => {
     router.push("/other");
@@ -43,7 +43,7 @@ export default async function HomePage() {
               Latest Upload
             </div>
             <div className="innerImg">
-              <img src={latestImage} alt="The latest upload" />
+              <img src="#" alt="The latest upload" />
             </div>
           </div>
         </div>
