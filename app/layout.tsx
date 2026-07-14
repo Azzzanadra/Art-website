@@ -1,5 +1,5 @@
 import "./globals.css";
-import Nav from "./nav";
+import Nav from "./components/nav";
 
 export const metadata = {
   title: "My Art Site",
